@@ -8,7 +8,7 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {StatusTimeline} from './src';
+import {IStatusData, StatusTimeline} from './src';
 
 function App(): React.JSX.Element {
   const sampleStatusData: IStatusData[] = [
