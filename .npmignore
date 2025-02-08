@@ -1,0 +1,53 @@
+# Exclude the source code
+src/
+
+# Exclude test files
+test/
+tests/
+*.spec.ts
+*.test.ts
+*.spec.tsx
+*.test.tsx
+# Exclude build directories
+build/
+dist/
+
+# Exclude local development environments and settings
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Exclude configuration files
+tsconfig.json
+tslint.json
+.eslintrc
+.eslintrc.js
+.jshintrc
+.stylelintrc
+.prettierrc
+.prettierignore
+.editorconfig
+
+# Logs and system files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+
+# Environment variables
+.env
+
+# Coverage
+coverage/
+
+# Documentation files
+*.md
+
+# Exclude Git and npm related files
+.git/
+.gitignore
+.npmignore
