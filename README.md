@@ -1,97 +1,140 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# StatusTimeline
 
-# Getting Started
+A customizable React Native component to display a vertical timeline of statuses, perfect for tracking the progress of tasks, orders, or any other milestone-based process.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## Features
 
-## Step 1: Start Metro
+- Customizable status circles and lines.
+- Option to provide custom icons for each status.
+- Differentiates between completed and incomplete statuses with distinct colors.
+- Fully configurable styles for labels, timestamps, and the overall layout.
+- Lightweight and easy to integrate into any React Native project.
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## Installation
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+Install the package using npm or yarn:
 
-```sh
-# Using npm
-npm start
-
-# OR using Yarn
-yarn start
+```bash
+npm install status-timeline
 ```
 
-## Step 2: Build and run your app
+or
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
+```bash
+yarn add status-timeline
 ```
 
-### iOS
+You also need to install the peer dependency `react-native-vector-icons`:
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
+```bash
+npm install react-native-vector-icons
 ```
 
-Then, and every time you update your native dependencies, run:
+## Usage
 
-```sh
-bundle exec pod install
+```tsx
+import React from 'react';
+import {View} from 'react-native';
+import StatusTimeline, {IStatusData} from 'status-timeline';
+
+const sampleStatusData: IStatusData[] = [
+  {
+    label: 'Order Placed',
+    timestamp: '23 Aug 2025, 04:25 PM',
+    completed: true,
+    icon: <Icon name="file-document-outline" size={24} color="#52AB62" />,
+  },
+  {
+    label: 'In Progress',
+    timestamp: '23 Aug 2025, 03:54 PM',
+    completed: true,
+    icon: <Icon name="package-variant-closed" size={24} color="#52AB62" />,
+  },
+  {
+    label: 'Shipped',
+    timestamp: 'Expected 02 Sep 2025',
+    completed: false,
+    icon: <Icon name="truck-delivery-outline" size={24} color="#52AB62" />,
+  },
+  {
+    label: 'Delivered',
+    timestamp: 'Expected 23 Aug 2025',
+    completed: false,
+    icon: (
+      <Icon name="checkbox-multiple-marked-circle" size={24} color="#52AB62" />
+    ),
+  },
+];
+
+const App = () => {
+  return (
+    <View>
+      <StatusTimeline
+        statuses={sampleStatusData}
+        title="Order Progress"
+        completedColor="#4CAF50"
+        incompleteColor="#BDBDBD"
+      />
+    </View>
+  );
+};
+
+export default App;
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+## Props
 
-```sh
-# Using npm
-npm run ios
+### Required Props
 
-# OR using Yarn
-yarn ios
+| Prop       | Type            | Description                                        |
+| ---------- | --------------- | -------------------------------------------------- |
+| `statuses` | `IStatusData[]` | Array of status objects representing the timeline. |
+
+### Optional Props
+
+| Prop                       | Type                   | Default     | Description                                                 |
+| -------------------------- | ---------------------- | ----------- | ----------------------------------------------------------- |
+| `completedColor`           | `string`               | `#8B4513`   | Color for completed statuses.                               |
+| `incompleteColor`          | `string`               | `#E5E5E5`   | Color for incomplete statuses.                              |
+| `containerStyle`           | `StyleProp<ViewStyle>` | `undefined` | Custom style for the container.                             |
+| `verticalLineStyle`        | `StyleProp<ViewStyle>` | `undefined` | Custom style for the vertical line connecting the statuses. |
+| `statusCircleStyle`        | `StyleProp<ViewStyle>` | `undefined` | Custom style for the status circle.                         |
+| `statusContentStyle`       | `StyleProp<ViewStyle>` | `undefined` | Custom style for the content section of each status.        |
+| `statusContentHeaderStyle` | `StyleProp<ViewStyle>` | `undefined` | Custom style for the header of the content section.         |
+| `statusLabelStyle`         | `StyleProp<TextStyle>` | `undefined` | Custom style for the status label text.                     |
+| `statusTimestampStyle`     | `StyleProp<TextStyle>` | `undefined` | Custom style for the status timestamp text.                 |
+| `titleStyle`               | `StyleProp<TextStyle>` | `undefined` | Custom style for the timeline title.                        |
+| `title`                    | `string`               | `undefined` | Title text for the timeline.                                |
+
+### IStatusData Interface
+
+| Field       | Type              | Required | Description                           |
+| ----------- | ----------------- | -------- | ------------------------------------- |
+| `label`     | `string`          | Yes      | Label for the status.                 |
+| `timestamp` | `string`          | Yes      | Timestamp for the status.             |
+| `completed` | `boolean`         | Yes      | Indicates if the status is completed. |
+| `icon`      | `React.ReactNode` | No       | Optional icon for the status.         |
+
+## Customization
+
+You can customize the appearance of the timeline by overriding the default styles. For example, to change the status circle size or the text styles, pass your own styles through the respective props.
+
+```tsx
+<StatusTimeline
+  statuses={statuses}
+  statusCircleStyle={{width: 30, height: 30}}
+  statusLabelStyle={{fontSize: 18, color: '#333'}}
+  statusTimestampStyle={{fontSize: 14, color: '#888'}}
+/>
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+## Screenshots
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+| Default View | Customized View |
+| ------------ | --------------- |
 
-## Step 3: Modify your app
+| ![Default View](https://i.ibb.co.com/g24ttbp/Screenshot-1739040337.png)
 
-Now that you have successfully run the app, let's make changes!
+## License
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+[MIT](https://choosealicense.com/licenses/mit/)
