@@ -6,7 +6,7 @@
  */
 
 import React from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {IStatusData, StatusTimeline} from './src';
 
