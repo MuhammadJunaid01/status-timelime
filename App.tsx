@@ -45,8 +45,11 @@ function App(): React.JSX.Element {
   ];
   return (
     <View>
-      <Text>Hello</Text>
-      <StatusTimeline statuses={sampleStatusData} completedColor="#52AB62" />
+      <StatusTimeline
+        title="Order Status"
+        statuses={sampleStatusData}
+        completedColor="#52AB62"
+      />
     </View>
   );
 }

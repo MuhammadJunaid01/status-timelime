@@ -27,6 +27,8 @@ export interface StatusTimelineProps {
   statusContentHeaderStyle?: StyleProp<ViewStyle>;
   statusLabelStyle?: StyleProp<TextStyle>;
   statusTimestampStyle?: StyleProp<TextStyle>;
+  titleStyle?: StyleProp<TextStyle>;
+  title?: string;
 }
 
 const StatusTimeline: React.FC<StatusTimelineProps> = ({
@@ -40,10 +42,12 @@ const StatusTimeline: React.FC<StatusTimelineProps> = ({
   statusContentStyle,
   statusLabelStyle,
   statusTimestampStyle,
+  title,
+  titleStyle,
 }) => {
   return (
     <View style={[styles.container, containerStyle]}>
-      <Text style={styles.title}>Order Status</Text>
+      <Text style={[styles.title, titleStyle]}>{title}</Text>
       <View style={styles.statusList}>
         {statuses.map((status, index) => (
           <View key={index} style={styles.statusItem}>
